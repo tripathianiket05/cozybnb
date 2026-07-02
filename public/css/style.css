@@ -319,17 +319,18 @@ body {
   50% { transform: scale(1.4) rotate(15deg); color: #ffea00; }
   100% { transform: scale(1) rotate(0deg); }
 }
-
 /* =========================================
    9. MOBILE RESPONSIVENESS (Media Queries)
    ========================================= */
 @media (max-width: 768px) {
-  /* Make the filters scroll horizontally */
+  
+  /* --- 1. FILTER FIXES (Your Code) --- */
   #filters {
     flex-wrap: nowrap;
     overflow-x: auto;
     -ms-overflow-style: none;  
     scrollbar-width: none;  
+    margin-top: 1rem; /* Gives breathing room below the navbar */
   }
   
   #filters::-webkit-scrollbar {
@@ -341,18 +342,17 @@ body {
     margin-right: 1.5rem;
   }
 
-  /* Hide the tax toggle on tiny screens to save space */
   .tax-toggle {
     display: none; 
   }
 
-  /* Add padding to the mobile dropdown menu links */
+  /* --- 2. SEARCH BAR & LINKS (Your Code) --- */
   .navbar-nav .nav-link {
-    padding: 0.5rem 0 !important;
+    padding: 0.8rem 0 !important;
     text-align: center;
+    border-bottom: 1px solid #f0f0f0; /* Adds a nice line between links */
   }
 
-  /* Center the search bar on mobile */
   .search-inp {
     margin-bottom: 0.5rem;
     width: 100%;
@@ -361,5 +361,18 @@ body {
   .navbar-nav form {
     flex-direction: column;
     padding: 1rem 0;
+  }
+
+  /* --- 3. THE CRITICAL FIX (The Dropdown Box) --- */
+  .navbar-collapse {
+    background-color: #ffffff; /* Forces the dropdown to be solid white */
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Drops a shadow over the beach image */
+    margin-top: 10px;
+    position: absolute; /* Ensures it floats over the content below */
+    width: 95%;
+    left: 2.5%; /* Centers the floating box */
+    z-index: 1000;
   }
 }
