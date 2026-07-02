@@ -1,0 +1,101 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mt-4 mb-5">
+    <div class="col-12 text-center mb-4">
+        <h2 class="fw-bold text-danger"><i class="fa-solid fa-user-shield"></i> Admin Control Panel</h2>
+        <p class="text-muted">Welcome, Commander. Here is your platform overview.</p>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card text-center shadow-sm border-0 bg-light">
+            <div class="card-body">
+                <h5 class="card-title text-muted">Total Users</h5>
+                <h2 class="fw-bold"><%= totalUsers %></h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card text-center shadow-sm border-0 bg-light">
+            <div class="card-body">
+                <h5 class="card-title text-muted">Total Properties</h5>
+                <h2 class="fw-bold"><%= totalListings %></h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card text-center shadow-sm border-0 bg-light">
+            <div class="card-body">
+                <h5 class="card-title text-muted">Total Reviews</h5>
+                <h2 class="fw-bold"><%= totalReviews %></h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mt-5">
+        <h4 class="mb-3">Manage Recent Listings</h4>
+        <div class="table-responsive">
+            <table class="table table-hover border">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Property Title</th>
+                        <th>Category</th>
+                        <th>Owner</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let listing of recentListings) { %>
+                        <tr>
+                            <td><a href="/listings/<%= listing._id %>"><%= listing.title %></a></td>
+                            <td><%= listing.category || 'N/A' %></td>
+                            <td><%= listing.owner ? listing.owner.username : 'Unknown' %></td>
+                            <td>
+                                <form method="POST" action="/admin/listings/<%= listing._id %>?_method=DELETE" style="display:inline;">
+                                    <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Drop</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-12 mt-5">
+        <h4 class="mb-3">User Directory</h4>
+        <div class="table-responsive">
+            <table class="table table-hover border">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let user of allUsers) { %>
+                        <tr>
+                            <td><%= user.username %></td>
+                            <td><%= user.email %></td>
+                            <td>
+                                <span class="badge <%= user.role === 'admin' ? 'bg-danger' : (user.role === 'owner' ? 'bg-success' : 'bg-secondary') %>">
+                                    <%= user.role.toUpperCase() %>
+                                </span>
+                            </td>
+                            <td>
+                                <% if(user.role !== 'admin') { %>
+                                    <form method="POST" action="/admin/users/<%= user._id %>?_method=DELETE" style="display:inline;">
+                                        <button class="btn btn-sm btn-outline-danger">Ban User</button>
+                                    </form>
+                                <% } else { %>
+                                    <span class="text-muted small">Protected</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

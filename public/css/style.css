@@ -1,0 +1,392 @@
+/* =========================================
+   1. CORE VARIABLES & TYPOGRAPHY
+   ========================================= */
+:root {
+  --wanderlust-red: #fe424d;
+  --text-dark: #222222;
+  --text-grey: #717171;
+  --bg-light-grey: #f7f7f7;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex: 1;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+/* =========================================
+   2. THE NAVBAR (Ultra-Clean & Pill Hovers)
+   ========================================= */
+.navbar {
+  height: 80px;
+  background-color: white !important;
+  border-bottom: none !important; /* Remove Bootstrap's harsh border */
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06); /* Extremely soft bottom shadow */
+  padding: 0 2rem;
+}
+
+.navbar-brand i {
+  color: var(--wanderlust-red);
+  font-size: 2.2rem;
+}
+
+.nav-link {
+  color: var(--text-dark) !important;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem !important;
+  border-radius: 30px; /* Pill shape */
+  transition: background-color 0.2s ease, color 0.2s ease;
+  margin: 0 0.2rem;
+}
+
+/* Airbnb-style grey pill on hover */
+.nav-link:hover {
+  background-color: var(--bg-light-grey);
+}
+
+/* =========================================
+   3. LISTING CARDS (Image-First Design)
+   ========================================= */
+.card {
+  border: none !important;
+  margin-bottom: 2.5rem;
+  background-color: transparent !important;
+}
+
+.card-img-top {
+  border-radius: 1rem !important;
+  width: 100% !important;
+  aspect-ratio: 1 / 1; /* Perfect squares for the grid */
+  object-fit: cover !important;
+}
+
+/* Remove card padding, make text align perfectly with image edge */
+.card-body {
+  padding: 1rem 0 0 0 !important; 
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+  color: var(--text-dark);
+}
+
+.card-text {
+  color: var(--text-grey);
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+}
+
+/* Make the price bold and dark */
+.card-text b {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+/* =========================================
+   4. SHOW PAGE (Individual Listing)
+   ========================================= */
+.show-img {
+  height: 55vh; /* Massive, beautiful hero image */
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1.5rem !important;
+  margin-bottom: 2rem;
+}
+
+.show-card {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  border: none !important;
+}
+
+/* =========================================
+   5. BUTTONS & FORMS
+   ========================================= */
+/* Primary Brand Buttons */
+.add-btn, .edit-btn, .btn-success {
+  background-color: var(--wanderlust-red) !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+  transition: transform 0.1s ease, background-color 0.2s;
+}
+
+.add-btn:hover, .edit-btn:hover, .btn-success:hover {
+  background-color: #e33b45 !important;
+}
+
+/* Active click state (button pushes down slightly) */
+.add-btn:active, .edit-btn:active, .btn-success:active {
+  transform: scale(0.96); 
+}
+
+/* Dark Buttons (Delete, etc.) */
+.btns .btn-dark {
+  background-color: var(--text-dark) !important;
+  border: none !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+}
+
+.btns {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Beautiful, airy forms */
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.form-control {
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #dddddd;
+}
+
+.form-control:focus {
+  border-color: var(--text-dark);
+  box-shadow: none; /* Removes the ugly blue Bootstrap glow */
+}
+
+/* =========================================
+   6. FOOTER
+   ========================================= */
+.f-info {
+  background-color: var(--bg-light-grey);
+  border-top: 1px solid #dddddd;
+  padding: 2.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.f-info-socials, .f-info-links {
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.f-info-socials i {
+  font-size: 1.3rem;
+  margin: 0 1rem;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.f-info-socials i:hover {
+  transform: scale(1.2);
+}
+
+.f-info-links a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  margin: 0 1rem;
+}
+
+.f-info-links a:hover {
+  text-decoration: underline;
+}
+/* --- Home Page Filters UI --- */
+#filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.filter {
+  text-align: center;
+  margin-right: 2rem;
+  margin-top: 1rem;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.filter:hover {
+  opacity: 1;
+  cursor: pointer;
+  transform: scale(1.05); /* Slight pop effect on hover */
+}
+
+.filter p {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.filter i {
+  font-size: 1.2rem;
+}
+
+/* --- Tax Toggle UI --- */
+.tax-toggle {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  height: 3.25rem;
+  padding: 1rem;
+  margin-left: auto; /* Pushes the toggle to the far right */
+  display: flex;
+  align-items: center;
+}
+
+.tax-toggle:hover {
+  border-color: black;
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+/* Initially hide the tax text on the price tags */
+.tax-info {
+  display: none; 
+  font-size: 0.9rem;
+  color: #666;
+}
+/* --- Home Page Filters UI --- */
+#filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.filter {
+  text-align: center;
+  margin-right: 2rem;
+  margin-top: 1rem;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  text-decoration: none; /* Removes underline since they are links */
+  color: black;          /* Keeps text black */
+}
+
+.filter:hover {
+  opacity: 1;
+  cursor: pointer;
+  transform: scale(1.05);
+  color: black;
+}
+
+.filter p {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.filter i {
+  font-size: 1.2rem;
+}
+
+/* --- Tax Toggle UI --- */
+.tax-toggle {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  height: 3.25rem;
+  padding: 1rem;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.tax-toggle:hover {
+  border-color: black;
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+/* Initially hide the tax text on the price tags */
+.tax-info {
+  display: none; 
+  font-size: 0.9rem;
+  color: #666;
+}
+/* =========================================
+   CUSTOM ANIMATED STAR RATING
+========================================= */
+
+.starability-slot {
+  display: flex;
+  gap: 0.3rem;
+  border: none;
+  padding: 0;
+}
+
+/* Hide the ugly radio buttons */
+.starability-slot input {
+  display: none;
+}
+
+/* Hides the "1 star" text but keeps the label clickable */
+.starability-slot label {
+  font-size: 0; 
+  color: #ffb500; /* Default state is GOLD */
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Create the pure CSS star using a Unicode character */
+.starability-slot label::before {
+  content: '★';
+  font-size: 2rem; /* Size of the star */
+}
+
+/* --- THE MAGIC COLOR LOGIC --- */
+
+/* 1. When an input is checked, turn every star AFTER it gray */
+.starability-slot input:checked ~ label {
+  color: #ccc;
+}
+
+/* 2. BUT KEEP the star immediately next to the checked input gold! */
+.starability-slot input:checked + label {
+  color: #ffb500;
+}
+
+/* 3. When the user hovers over the star area, temporarily make all stars gold */
+.starability-slot:hover label {
+  color: #ffb500 !important;
+}
+
+/* 4. Then turn every star AFTER the hovered star gray */
+.starability-slot label:hover ~ label {
+  color: #ccc !important;
+}
+
+/* --- THE ANIMATION --- */
+
+/* Add a satisfying 'pop' and rotate animation when a star is clicked */
+.starability-slot input:checked + label {
+  animation: popRotate 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popRotate {
+  0% { 
+    transform: scale(1) rotate(0deg); 
+  }
+  50% { 
+    transform: scale(1.4) rotate(15deg); 
+    color: #ffea00; /* Flashes bright yellow in the middle of the pop */
+  }
+  100% { 
+    transform: scale(1) rotate(0deg); 
+  }
+}

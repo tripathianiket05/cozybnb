@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    
+    <a class="navbar-brand d-flex align-items-center" href="/listings">
+      <i class="fa-regular fa-compass fa-xl me-2" style="color: #fe424d;"></i>
+      <span style="font-weight: 700; color: #fe424d; font-size: 1.3rem;">CozyBnB</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <form class="d-flex" role="search" method="GET" action="/listings">
+          <input class="form-control me-2 search-inp" name="q" type="search" placeholder="Search destinations" aria-label="Search">
+          <button class="btn btn-outline-danger search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i> Search
+          </button>
+        </form>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        
+        <% if(!currUser) { %>
+          <a class="nav-link" href="/signup"><b>Sign up</b></a>
+          <a class="nav-link" href="/login"><b>Log in</b></a>
+        <% } %>
+
+        <% if(currUser) { %>
+          
+          <% if(currUser.role === 'admin') { %>
+            <a class="nav-link text-danger fw-bold" href="/admin/dashboard" title="Admin Portal">
+              <i class="fa-solid fa-shield-halved"></i> Admin Portal
+            </a>
+          <% } %>
+
+          <% if(currUser.role === 'owner' || currUser.role === 'admin') { %>
+            <a class="nav-link" href="/listings/new">Add new Listing</a>
+          <% } %>
+          
+          <a class="nav-link" href="/logout"><b>Log out</b></a>
+        <% } %>
+        
+      </div>
+    </div>
+  </div>
+</nav>
